@@ -4,6 +4,7 @@ using Microsoft.Xna.Framework.Input;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Mime;
 using System.Text;
 using System.Threading.Tasks;
 using Rectangle = Microsoft.Xna.Framework.Rectangle;
@@ -21,19 +22,19 @@ namespace Summative_Breakout
         public void Inizialize()
         {
             _location = new Rectangle(0, 0, 10, 10);
-        }
 
+        }
 
         public void Update(MouseState mouseState, GameTime gameTime)
         {
-
+            _location.X = mouseState.X;
         }
 
         public void Draw(SpriteBatch spriteBatch)
         {
             spriteBatch.Begin();
 
-            spriteBatch.Draw(_location, new Rectangle(0, 0, _location.Width, _location.Height));
+            spriteBatch.Draw(_texture, _location, Color.White);
 
             spriteBatch.End();
         }

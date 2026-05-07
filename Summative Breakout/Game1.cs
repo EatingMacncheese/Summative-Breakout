@@ -17,11 +17,13 @@ namespace Summative_Breakout
         private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
         MouseState mouseState;
+
         Rectangle window;
         Brick brick1;
         Ball ball1;
         Paddle paddle1;
         Texture2D brickTexture, paddleTexture, ballTexture;
+        Rectangle mouseRect;
 
         public Game1()
         {
@@ -33,13 +35,16 @@ namespace Summative_Breakout
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
-
+            window = new Rectangle(0, 0, 900, 600);
+            mouseRect = new Rectangle(10, 10, 20, 20);
             base.Initialize();
         }
 
         protected override void LoadContent()
         {
             _spriteBatch = new SpriteBatch(GraphicsDevice);
+
+            paddleTexture = Content.Load<Texture2D>("paddle");
 
             // TODO: use this.Content to load your game content here
         }
@@ -48,6 +53,10 @@ namespace Summative_Breakout
         {
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
+
+            
+            mouseState = Mouse.GetState();
+            mouseRect.Location = mouseState.Position;
 
             // TODO: Add your update logic here
 
@@ -58,6 +67,11 @@ namespace Summative_Breakout
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
+            _spriteBatch.Begin();
+
+            _spriteBatch.Draw(paddleTexture, mouseRect, Color.White);
+
+            _spriteBatch.End();
             // TODO: Add your drawing code here
 
             base.Draw(gameTime);

@@ -19,11 +19,10 @@ namespace Summative_Breakout
         MouseState mouseState;
 
         Rectangle window;
-        Brick brick1;
-        Ball ball1;
-        Paddle paddle1;
+        Brick brick;
+        Ball ball;
+        Paddle paddle;
         Texture2D brickTexture, paddleTexture, ballTexture;
-        Rectangle mouseRect;
 
         public Game1()
         {
@@ -36,8 +35,10 @@ namespace Summative_Breakout
         {
             // TODO: Add your initialization logic here
             window = new Rectangle(0, 0, 900, 600);
-            mouseRect = new Rectangle(10, 10, 20, 20);
+            
             base.Initialize();
+
+            paddle = new Paddle(paddleTexture, new Rectangle(400, 400, 70, 20));
         }
 
         protected override void LoadContent()
@@ -56,8 +57,8 @@ namespace Summative_Breakout
 
             
             mouseState = Mouse.GetState();
-            mouseRect.Location = mouseState.Position;
-
+            paddle.Update(mouseState);
+    
             // TODO: Add your update logic here
 
             base.Update(gameTime);
@@ -69,7 +70,7 @@ namespace Summative_Breakout
 
             _spriteBatch.Begin();
 
-            _spriteBatch.Draw(paddleTexture, mouseRect, Color.White);
+            paddle.Draw(_spriteBatch);
 
             _spriteBatch.End();
             // TODO: Add your drawing code here

@@ -16,27 +16,26 @@ namespace Summative_Breakout
         private Rectangle _location;
         private Vector2 _speed;
         private Texture2D _texture;
-        private Texture2D paddleTexture;
-        private Rectangle rectangle;
-        private Vector2 vector2;
-        public void Inizialize()
+
+        public Paddle(Texture2D texture, Rectangle location)
         {
-            _location = new Rectangle(0, 0, 10, 10);
+            _location = location;
+            _texture = texture;
+            _speed = Vector2.Zero;
 
         }
 
-        public void Update(MouseState mouseState, GameTime gameTime)
+        public void Update(MouseState mouseState)
         {
             _location.X = mouseState.X;
+
         }
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Begin();
 
             spriteBatch.Draw(_texture, _location, Color.White);
 
-            spriteBatch.End();
         }
     }
 

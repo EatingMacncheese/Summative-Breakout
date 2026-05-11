@@ -24,6 +24,7 @@ namespace Summative_Breakout
             _location = location;
             _texture = texture;
             _speed = Vector2.Zero;
+            
 
         }
 

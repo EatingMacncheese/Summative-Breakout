@@ -39,6 +39,7 @@ namespace Summative_Breakout
             base.Initialize();
 
             paddle = new Paddle(paddleTexture, new Rectangle(400, 400, 70, 20));
+            ball = new Ball(ballTexture, new Rectangle(200, 200, 20, 20));
         }
 
         protected override void LoadContent()
@@ -46,6 +47,8 @@ namespace Summative_Breakout
             _spriteBatch = new SpriteBatch(GraphicsDevice);
 
             paddleTexture = Content.Load<Texture2D>("paddle");
+            ballTexture = Content.Load<Texture2D>("circle");
+
 
             // TODO: use this.Content to load your game content here
         }
@@ -58,6 +61,7 @@ namespace Summative_Breakout
             
             mouseState = Mouse.GetState();
             paddle.Update(mouseState);
+            ball.Update();
     
             // TODO: Add your update logic here
 
@@ -71,6 +75,7 @@ namespace Summative_Breakout
             _spriteBatch.Begin();
 
             paddle.Draw(_spriteBatch);
+            ball.Draw(_spriteBatch);
 
             _spriteBatch.End();
             // TODO: Add your drawing code here

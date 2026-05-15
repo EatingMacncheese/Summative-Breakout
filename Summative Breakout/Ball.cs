@@ -23,15 +23,31 @@ namespace Summative_Breakout
         {
             _location = location;
             _texture = texture;
-            _speed = Vector2.Zero;
-            
+            _speed = new Vector2(2, 4);
+           
 
         }
 
-        public void Update()
+        public void Update(Rectangle window)
         {
-            
+            _location.X += (int)_speed.X;
+            if (_location.Right > window.Width || _location.Left < 0)
+            {
+                _speed.X *= -1;
+            }
+            _location.Y += (int)_speed.Y;
+            if (_location.Top < window.Top)
+            {
+                _speed.Y = 4;
+            }
+            else if (_location.Bottom > window.Height)
+                _speed.Y *= -1;  
 
+
+            if (_location.Bottom < )
+            {
+
+            }
         }
 
         public void Draw(SpriteBatch spriteBatch)

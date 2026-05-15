@@ -34,12 +34,16 @@ namespace Summative_Breakout
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
-            window = new Rectangle(0, 0, 900, 600);
-            
+            window = new Rectangle(0, 0, 600, 500);
+
             base.Initialize();
 
             paddle = new Paddle(paddleTexture, new Rectangle(400, 400, 70, 20));
             ball = new Ball(ballTexture, new Rectangle(200, 200, 20, 20));
+
+            _graphics.PreferredBackBufferWidth = window.Width;
+            _graphics.PreferredBackBufferHeight = window.Height;
+            _graphics.ApplyChanges();
         }
 
         protected override void LoadContent()
@@ -49,7 +53,7 @@ namespace Summative_Breakout
             paddleTexture = Content.Load<Texture2D>("paddle");
             ballTexture = Content.Load<Texture2D>("circle");
 
-
+            
             // TODO: use this.Content to load your game content here
         }
 
@@ -61,7 +65,7 @@ namespace Summative_Breakout
             
             mouseState = Mouse.GetState();
             paddle.Update(mouseState);
-            ball.Update();
+            ball.Update(window);
     
             // TODO: Add your update logic here
 
